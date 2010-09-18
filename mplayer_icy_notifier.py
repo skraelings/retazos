@@ -24,8 +24,8 @@ def read_and_notify(mplayerfd):
                 start = line.find("=") + 1
                 end = line.find(";")
                 current_song = line[start:end]
-        except IOError as e:
-            if not e.errno == errno.EINTR:
+        except IOError as detail:
+            if not detail.errno == errno.EINTR:
                 raise
 
 if __name__ == '__main__':
