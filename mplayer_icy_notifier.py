@@ -13,8 +13,9 @@ def read_and_notify(mplayerfd):
         if current_song:
             print("You requested current song's title:", current_song,
                   file=sys.stderr)
-            args = ['notify-send', "Current song:\n" + current_song]
+            args = ["notify-send", "Current song:\n" + current_song]
             subprocess.call(args)
+    # We register our handler
     signal.signal(signal.SIGUSR1, handler)
 
     while True:
@@ -28,5 +29,5 @@ def read_and_notify(mplayerfd):
             if not detail.errno == errno.EINTR:
                 raise
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     read_and_notify(sys.stdin)
