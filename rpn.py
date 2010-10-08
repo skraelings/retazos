@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 # Complain with: Reynaldo Baquerizo <reynaldomic@gmail.com>
+# Critics & contributions: Arnau Sanchez <pyarnau@gmail.com>
 # Thu 07 Oct 2010 02:43:11 PM PET
 
 """
@@ -22,17 +23,17 @@ def eval_rpn(tokens):
     stack = []
     for token in tokens:
         if callable(token):
-            stack.insert(0, token(stack.pop(1), stack.pop(0)))
+            stack.append(token(stack.pop(-2), stack.pop(-1)))
         elif isinstance(token, float):
-            stack.insert(0, token)
-    return stack.pop()
+            stack.append(token)
+    return stack
 
 def parse_rpn(line):
     return [operations[x] if x in operations else float(x) for x in
             line.split()]
 
 def rpn(line):
-    return eval_rpn(parse_rpn(line))
+    return eval_rpn(parse_rpn(line))[0]
 
 def test_rpn():
     assert rpn("4 3 + 9 3 / *") == 21
