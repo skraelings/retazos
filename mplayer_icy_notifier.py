@@ -1,4 +1,6 @@
 #!/usr/bin/python
+# Author: Reynaldo Baquerizo <reynaldomic@gmail.com>
+# Date: August 2010
 from __future__ import print_function
 import sys
 import errno
@@ -15,7 +17,7 @@ def read_and_notify(mplayerfd):
                   file=sys.stderr)
             args = ["notify-send", "Current song:\n" + current_song]
             subprocess.call(args)
-    # We register our handler
+    # Register the handler
     signal.signal(signal.SIGUSR1, handler)
 
     while True:
