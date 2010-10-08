@@ -11,22 +11,28 @@ import sys
 import pdb
 import operator as op
 
-op = {
+operations = {
     '+': op.add,
     '-': op.sub,
     '*': op.mul,
     '/': op.div
 }
 
-def rpn(line):
+def eval_rpn(tokens):
     stack = []
-    line = line.split()
-    for c in line:
-        if c in op:
-            stack.insert(0, op[c](stack.pop(1), stack.pop(0)))
-        elif isinstance(float(c), float):
-            stack.insert(0, float(c))
+    for token in tokens:
+        if callable(token):
+            stack.insert(0, token(stack.pop(1), stack.pop(0)))
+        elif isinstance(token, float):
+            stack.insert(0, token)
     return stack.pop()
+
+def parse_rpn(line):
+    return [operations[x] if x in operations else float(x) for x in
+            line.split()]
+
+def rpn(line):
+    return eval_rpn(parse_rpn(line))
 
 def test_rpn():
     assert rpn("4 3 + 9 3 / *") == 21
