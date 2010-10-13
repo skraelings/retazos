@@ -49,7 +49,7 @@ Argument BUFFER is the output of `url-retrieve-synchronously' command."
   data)
 
 (defun xkcd-save-image (buffer title)
-  "Save the PNG data found in BUFFER with TITLE in the xkcd \
+  "Save the PNG data found in BUFFER with TITLE in the xkcd
 directory as given by the constant xkcd-path-to-dir."
   (with-current-buffer buffer
     (goto-char (1+ url-http-end-of-headers))
@@ -65,7 +65,7 @@ directory as given by the constant xkcd-path-to-dir."
     (kill-buffer buffer)))
 
 (defun xkcd-retrieve (number)
-  "Retrieve an episode of the strip comic XKCD and save it in the XKCD \
+  "Retrieve an episode of the strip comic XKCD and save it in the XKCD
 directory as given by the constant xkcd-path-to-dir.  Return t on
 success.  Argument NUMBER is an integer that corresponds to one of the
 comics."
