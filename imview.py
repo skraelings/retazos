@@ -25,7 +25,7 @@ def find_image_files(image):
         os.chdir(os.path.dirname(image))
     for frmt in FILE_FORMATS:
         _images.extend(glob.glob("*." + frmt))
-	_images.extend(glob.glob("*." + frmt.upper()))
+        _images.extend(glob.glob("*." + frmt.upper()))
     _images.sort()
     # Hacemos que la imagen que fue "clicked" vaya primero en el container,
     # corriendo todas las demas hacia la izquierda. De otra forma no importa
@@ -49,4 +49,4 @@ if __name__ == '__main__':
         sys.exit(main(sys.argv[1]))
     except IndexError:
         print("No files given")
-	sys.exit(1)
+        sys.exit(1)
