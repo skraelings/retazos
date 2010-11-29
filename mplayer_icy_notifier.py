@@ -38,5 +38,5 @@ def read_and_notify(mplayerfd, output=None):
             break
 
 if __name__ == "__main__":
-    output = open('.favorites.song')
+    output = open('.favorites.song', 'a')
     read_and_notify(sys.stdin, output)

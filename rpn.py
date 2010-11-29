@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 
 # Complain with: Reynaldo Baquerizo <reynaldomic@gmail.com>
 # Critics & contributions: Arnau Sanchez <pyarnau@gmail.com>
@@ -41,6 +41,8 @@ def test_rpn():
     assert rpn("10 3 /") == float(10) / 3
     assert rpn("2 -3 + 1 9 / 6 7 * * +") == -1 + (1.0 / 9) * (6 * 7)
     assert rpn("-4 1 -") == -5
+
+    print "All tests passed."
 
 if __name__ == "__main__":
     test_rpn()
