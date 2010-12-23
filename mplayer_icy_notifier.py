@@ -16,7 +16,7 @@ def read_and_notify(mplayerfd, output=None):
             print("You requested current song's title:", current_song,
                   file=sys.stderr)
             if output:
-                output.writelines(current_song + '\n')
+                output.writelines(current_song + "\n")
                 output.flush()
             args = ["notify-send", "Current song:\n" + current_song]
             subprocess.call(args)
@@ -38,5 +38,5 @@ def read_and_notify(mplayerfd, output=None):
             break
 
 if __name__ == "__main__":
-    output = open('.favorites.song', 'a')
+    output = open(".favorites.song", "a")
     read_and_notify(sys.stdin, output)
