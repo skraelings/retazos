@@ -14,15 +14,14 @@ SCENESIZE = (320, 240)
 
 class Site(QGraphicsEllipseItem):
 
-    def __init__(self, scene, rect, weight):
+    def __init__(self, rect, weight):
         super(Site, self).__init__(rect)
         self.setFlags(QGraphicsItem.ItemIsSelectable |
                       QGraphicsItem.ItemIsMovable |
                       QGraphicsItem.ItemIsFocusable)
         self.rect = rect
-        self.weight = weight
-        scene.clearSelection()
-        # self.setSelected(True)
+        self.weight = weight            # Controls how much the Site is allowed
+                                        # to move
         self.setFocus()
 
 class SiteDialog(QDialog):
@@ -61,14 +60,22 @@ class MainForm(QDialog):
         self.view.setRenderHint(QPainter.Antialiasing)
         self.view.setScene(self.scene)
 
-        layout = QHBoxLayout()
-        layout.addWidget(self.view)
+        self.siteLabel = QLabel("Site: ")
+
         buttonLayout = QVBoxLayout()
         for text, slot in (("Add &Site", self.add_site),):
             button = QPushButton(text)
             self.connect(button, SIGNAL("clicked()"), slot)
             buttonLayout.addWidget(button)
         buttonLayout.addStretch()
+
+        displayLayout = QVBoxLayout()
+        displayLayout.addWidget(self.view)
+        displayLayout.addWidget(self.siteLabel)
+        displayLayout.addStretch()
+
+        layout = QHBoxLayout()
+        layout.addLayout(displayLayout)
         layout.addLayout(buttonLayout)
         self.setLayout(layout)
 
@@ -76,13 +83,9 @@ class MainForm(QDialog):
         form = SiteDialog()
         if form.exec_():
             weight = form.weightSpinBox.value()
-            self.scene.addItem(Site(self.scene, QRectF(random() * SCENESIZE[0],
-                                                       random() * SCENESIZE[1],
-                                                       8, 8), weight))
-            print(self.scene.items())
-        # self.scene.addItem(Site(self.scene, QRectF(random() * SCENESIZE[0],
-        #                                            random() * SCENESIZE[1],
-        #                                            8,8)))
+            self.scene.addItem(Site(QRectF(random() * SCENESIZE[0],
+                                           random() * SCENESIZE[1],
+                                           8, 8), weight))
 
 def main():
     app = QApplication(sys.argv)
