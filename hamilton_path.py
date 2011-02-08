@@ -24,15 +24,6 @@ Graph = {
     20:(1,13,19),
 }
 
-Graph2 = {
-    1:(2,5,6),
-    2:(1,3,5),
-    3:(2,4),
-    4:(3,5),
-    5:(1,2,4),
-    6:(1,),
-}
-
 def dfs(graph, vertex, S=[]):
     S.append(vertex)
     for u in graph[vertex]:
@@ -40,29 +31,5 @@ def dfs(graph, vertex, S=[]):
             dfs(graph, u, S)
     return S
 
-def rec_dfs(G, s, S=None):
-    if S is None: S = set()
-    S.add(s)
-    for u in G[s]:
-        if u in S: continue
-        rec_dfs(G, u, S)
 
-def build_candidates(graph, vertex, solution=[], candidates=[]):
-    candidates.append(vertex)
-    for u in graph[vertex]:
-        if u not in solution:
-            build_candidates(graph, u, solution, candidates)
-    return candidates
 
-def backtrack(graph, vertex, solution=[]):
-    if len(solution) == 20:
-        print(solution)
-        return
-    else:
-        for v in build_candidates(graph, vertex, solution):
-            solution.append(v)
-            backtrack(graph, v, solution)
-            solution.pop()
-
-# print(backtrack(Graph, 2))
-print(dfs(Graph, 2))
