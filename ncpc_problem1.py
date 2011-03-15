@@ -13,7 +13,7 @@ royal blood, that child’s child with  another parent who is not of royal linea
 would have  1/4 royal  blood, and  so on. The  person with  most blood  from the
 founder is the one most related.
 
-Input specifications 
+Input specifications
 The first line  contains two integers, N (2 ≤ N  ≤ 50) and M (2 ≤  M ≤ 50).  The
 second line  contains the name of the  founder of Utopia.  Then  follows N lines
 describing a  family relation.  Each such line  contains three  names, separated
@@ -52,8 +52,8 @@ def find_all_paths(graph, start, end, path=[]):
     path = path + [start]
     if start == end:
         return [path]
-    if not graph.has_key(start): # python2
-    # if not start in graph.keys():
+    # if not graph.has_key(start):        # python2
+    if not start in graph.keys():
         return []
     paths = []
     for node in graph[start]:
@@ -68,9 +68,9 @@ def main(fd):
     # print("Claimant", "|", "Consanguiniedad")
     # print("--------", "-", "---------------")
     # for claimant in claimants:
-    #     print(claimant, "|", sum(1/(len(i) - 1) ** 2 for i in
-    #                              find_all_paths(graph, claimant, founder)))
-    results = [(claimant, sum(1.0/(len(i) - 1) ** 2 
+    #      print(claimant, "|", sum(1/(len(i) - 1) ** 2 for i in
+    #                               find_all_paths(graph, claimant, founder)))
+    results = [(claimant, sum(1.0/(len(i) - 1) ** 2
                               for i in find_all_paths(graph, claimant, founder)))
                for claimant in claimants]
     # http://stackoverflow.com/questions/613183/python-sort-a-dictionary-by-value
@@ -80,4 +80,4 @@ def main(fd):
 
 if __name__ == '__main__':
     # sys.exit(main(open(sys.argv[1])))
-    main(open("/home/rbm/ncpc_sample1.txt"))
+    print(main(open("./ncpc_sample1.txt")))
