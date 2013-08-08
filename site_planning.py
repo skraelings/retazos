@@ -141,7 +141,7 @@ class MainForm(QDialog):
 def main(args):
     app = QApplication(args)
     form = MainForm()
-    form.show()
+    form.showMaximized()
     app.exec_()
 
 if __name__ == '__main__':

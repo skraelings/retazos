@@ -33,7 +33,7 @@
 Argument BUFFER is the output of `url-retrieve-synchronously' command."
   (with-current-buffer buffer
     (url-http-parse-response)
-    (search-forward "contentContainer")
+    (search-forward "middleContainer")
     (sgml-skip-tag-backward 1)
     (forward-sexp)
     (let ((start-tag (point))

@@ -29,7 +29,7 @@ def dfs(graph, vertex, S=[]):
     for u in graph[vertex]:
         if u not in S:
             dfs(graph, u, S)
+        else: print u
     return S
 
-
-
+dfs(Graph, 12)
